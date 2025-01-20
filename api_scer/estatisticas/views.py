@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Essa é a página inicial - index")
-
+    return render(request, 'estatisticas/index.html')
+    
 def staff(request):
-    return HttpResponse("Página de staff")
+    return render(request, 'estatisticas/staff.html')
