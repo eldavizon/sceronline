@@ -8,3 +8,9 @@ def index(request):
     
 def staff(request):
     return render(request, 'estatisticas/staff.html')
+
+def produtos(request):
+    return render(request, 'estatisticas/produtos.html')
+
+def retirada(request):
+    return render(request, 'estatisticas/retirada.html')
