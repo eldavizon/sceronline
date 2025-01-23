@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls.static import static
-from django.conf import settings
+from user import views as user_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('estatisticas.urls')), #importando o arquivo de urls do app de estatisticas
+    path('register/', user_view.register, name='user-register')
 ]
