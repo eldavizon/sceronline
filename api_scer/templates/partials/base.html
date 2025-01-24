@@ -19,6 +19,20 @@
     <link rel="stylesheet" href="{% static '/style.css' %}">
 
     <title>{% block title %} {% endblock %}</title>
+
+    <style>
+
+      /* estilo para que o botão também dê highlight */
+    .btn-hover-highlight {
+      transition: background-color 0.2s ease, transform 0.2s ease; /* Suavidade no hover */
+    }
+
+    .btn-hover-highlight:hover {
+      background-color: #2B3035; /* Tom para o highlight */
+      color: #fff; /* Garantir que o texto fique legível */
+    }
+    </style>
+
   </head>
   <body>
 
