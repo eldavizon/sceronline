@@ -137,3 +137,5 @@ STATIC_ROOT = (BASE_DIR/"assets/")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'estatisticas-index'
+
+LOGIN_URL = 'user-login'

@@ -7,9 +7,13 @@
 
 {% block content%} 
 
+{% if user.is_authenticated and user.is_staff %}  <!-- user.is_superuser também é um argumento válido. -->
+
+
  <!--Topside - widgets de informações-->
 
  {% include 'partials/topnav.html' %}
+
 
  <!--End Topside-->
 
@@ -105,5 +109,13 @@
         </div>
     </div>
 </div>
+
+{% else %}
+
+{% include 'estatisticas/staff_index.html' %}
+
+
+{% endif %}
+
 
 {% endblock %}
