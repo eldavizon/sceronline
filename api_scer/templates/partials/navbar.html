@@ -40,12 +40,12 @@
           <!-- Dropdown Menu "Perfil" disponível para todos -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Perfil
+              Usuário
             </a>
             <ul class="dropdown-menu">
               {% if user.is_authenticated %}
 
-                <li><a class="dropdown-item fw-bold" href="{% url 'user-profile' %}">Editar perfil</a></li>
+                <li><a class="dropdown-item fw-bold" href="{% url 'user-profile' %}">Perfil</a></li>
 
 
                 <li class="d-flex">
