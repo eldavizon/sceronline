@@ -46,44 +46,27 @@
             <table class="table bg-white">
                 <thead class="bg-info">
                     <tr class="text-white">
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Classificação</th>
+                        <th scope="col">Quantidade</th>
                         <th scope="col">Activity</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for item in items %}
+
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>{{item.nome}}</td>
+                        <td>{{item.classificacao}}</td>
+                        <td>{{item.quantidade}}</td>
                         <td>
                             <a class="btn btn-info btn-sm" href="">Edit</a>
                             <a class="btn btn-danger btn-sm" href="">Delete</a>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>
-                            <a class="btn btn-info btn-sm" href="">Edit</a>
-                            <a class="btn btn-danger btn-sm" href="">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>
-                            <a class="btn btn-info btn-sm" href="">Edit</a>
-                            <a class="btn btn-danger btn-sm" href="">Delete</a>
-                        </td>
-                    </tr>
+
+                    {% endfor %}
+                    
                 </tbody>
             </table>
         </div>

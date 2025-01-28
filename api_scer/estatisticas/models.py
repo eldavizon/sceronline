@@ -2,11 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-CLASSIFICACAO = (
-    ('category', 'category'),
-    ('food', 'food'),
-    ('eletronico', 'eletronico'),
-)
+
+# Uso do loop for para não ter que escrever toda a repetição. O parametro "choices" aceita as tuplas de tuplas.
+CLASSIFICACAO = [(item, item) for item in[
+    "Ácidos minerais oxidantes",
+    "Bases cáusticas",
+    "Hidrocarbonetos aromáticos",
+    "Orgânicos Halogenados",
+    "Metais",
+    "Metais tóxicos",
+    "Hidrocarbonetos alifáticos saturados",
+    "Fenóis e cresóis",
+    "Agentes oxidantes fortes",
+    "Agentes redutores fortes",
+    "Água e soluções aquosas",
+    "Substâncias que reagem com água",
+    "Químicos tóxicos",
+    "Inflamáveis",
+    "Outros",
+    "Não perigoso",
+]
+]
+
 
 class Produto(models.Model):
     nome = models.CharField(max_length=200, null=True)
