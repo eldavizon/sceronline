@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Produto
+from .forms import ProdutoForm
 
 # Create your views here.
 
@@ -19,9 +20,19 @@ def produtos(request):
     items = Produto.objects.all()
     #    items = Produto.objects.raw() significaria usar o código SQL bruto ao invés do ORM.
 
+    if request.method=="POST":
+        form = ProdutoForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('estatisticas-produtos')
+    else:
+        form = ProdutoForm()
     
+        
     context= {
         'items': items,
+        'form' : form,
     }
     
     return render(request, 'estatisticas/produtos.html', context)
