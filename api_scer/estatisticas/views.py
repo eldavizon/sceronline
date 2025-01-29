@@ -37,6 +37,16 @@ def produtos(request):
     
     return render(request, 'estatisticas/produtos.html', context)
 
+def produtos_delete(request, pk):
+    
+    item = Produto.objects.get(id = pk)
+    
+    if request.method=="POST":
+        item.delete()
+        return redirect('estatisticas-produtos')
+    
+    return render(request, 'estatisticas/produtos_delete.html')
+
 @login_required(login_url='user-login', ) # está configurado nas settings > login_url.
 def retirada(request):
     return render(request, 'estatisticas/retirada.html')
