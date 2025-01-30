@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Produto
 from .forms import ProdutoForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -10,9 +11,31 @@ from .forms import ProdutoForm
 def index(request):
     return render(request, 'estatisticas/index.html')
 
+
+
 @login_required(login_url='user-login', ) # está configurado nas settings > login_url.
 def staff(request):
-    return render(request, 'estatisticas/staff.html')
+    
+    workers = User.objects.all()
+    
+    context = {
+        'workers' : workers,
+    }
+    
+    return render(request, 'estatisticas/staff.html', context)
+
+
+
+@login_required(login_url='user-login', ) # está configurado nas settings > login_url.
+def staff_detail(request, pk):
+    
+    workers = User.objects.get(id = pk)
+    
+    context = {
+                'workers' : workers
+    }
+
+    return render(request, 'estatisticas/staff_detail.html', context)
 
 @login_required(login_url='user-login', ) # está configurado nas settings > login_url.
 def produtos(request):
@@ -37,6 +60,9 @@ def produtos(request):
     
     return render(request, 'estatisticas/produtos.html', context)
 
+
+
+@login_required(login_url='user-login', ) # está configurado nas settings > login_url.
 def produtos_delete(request, pk):
     
     item = Produto.objects.get(id = pk)
@@ -47,6 +73,9 @@ def produtos_delete(request, pk):
     
     return render(request, 'estatisticas/produtos_delete.html')
 
+
+
+@login_required(login_url='user-login', ) # está configurado nas settings > login_url.
 def produtos_update(request, pk):
     
     item = Produto.objects.get(id = pk)
@@ -65,6 +94,8 @@ def produtos_update(request, pk):
     }
     
     return render(request, 'estatisticas/produtos_update.html', context)
+
+
 
 @login_required(login_url='user-login', ) # está configurado nas settings > login_url.
 def retirada(request):
