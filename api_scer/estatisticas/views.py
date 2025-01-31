@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Produto
+from .models import Produto, Retirada
 from .forms import ProdutoForm
 from django.contrib.auth.models import User
 
@@ -99,4 +99,11 @@ def produtos_update(request, pk):
 
 @login_required(login_url='user-login', ) # está configurado nas settings > login_url.
 def retirada(request):
-    return render(request, 'estatisticas/retirada.html')
+    
+    retiradas = Retirada.objects.all()
+    
+    context = {
+        'retiradas' : retiradas,
+    }
+    
+    return render(request, 'estatisticas/retirada.html', context)
