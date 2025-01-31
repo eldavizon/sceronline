@@ -2,14 +2,36 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Produto, Retirada
-from .forms import ProdutoForm
+from .forms import ProdutoForm, RetiradaForm
 from django.contrib.auth.models import User
 
 # Create your views here.
 
 @login_required(login_url='user-login', ) # está configurado nas settings > login_url.
 def index(request):
-    return render(request, 'estatisticas/index.html')
+    
+    retiradas = Retirada.objects.all()
+    
+    if request.method == "POST":
+        form = RetiradaForm(request.POST)
+        
+        if form.is_valid():
+            
+            instance = form.save(commit=False) # Não se salva o formulario imediatamente para que seja possivel adicionar o usuario
+            instance.staff = request.user   # Adiciona-se o usuário às informações do formulario aqui
+            instance.save()     #Agora sim, pode-se salvar.
+            
+            return redirect('estatisticas-index')
+        
+    else:
+        form = RetiradaForm()
+    
+    context = {
+        'retiradas':retiradas,
+        'form': form,
+    }
+    
+    return render(request, 'estatisticas/index.html', context)
 
 
 
